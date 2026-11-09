@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="500.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javitoprogram.HelloController">
+<top>
+    <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Open text file..." />
+                    <MenuItem mnemonicParsing="false" text="Save text file as..." />
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <items>
+                    <MenuItem id="correctErrorsMenuItem" mnemonicParsing="false" onAction="#onCorrectRequested" text="Correct errors" />
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+</top>
+<bottom>
+    <Label id="statusLabel" maxWidth="1.7976931348623157E308" text="Ready" BorderPane.alignment="CENTER">
+        <BorderPane.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" />
+        </BorderPane.margin>
+    </Label>
+</bottom>
+<center>
+    <VBox alignment="TOP_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
+        <BorderPane.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+        </BorderPane.margin>
+        <children>
+            <TextArea id="inputTextArea" promptText="Copy text with errors here..." wrapText="true">
+                <VBox.vgrow>
+                    <Priority fx:constant="ALWAYS" />
+                </VBox.vgrow>
+            </TextArea>
+            <HBox alignment="CENTER_RIGHT">
+                <children>
+                    <Button id="correctButton" defaultButton="true" mnemonicParsing="false" onAction="#onCorrectRequested" text="Correct errors" />
+                </children>
+            </HBox>
+        </children>
+    </VBox>
+</center>
+</BorderPane>
