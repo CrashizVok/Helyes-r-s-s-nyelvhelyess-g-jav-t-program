@@ -17,7 +17,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
                 <items>
-                    <MenuItem id="correctErrorsMenuItem" mnemonicParsing="false" onAction="#onCorrectRequested" text="Correct errors" />
+                    <MenuItem fx:id="correctErrorsMenuItem" mnemonicParsing="false" onAction="#onCorrectRequested" text="Correct errors" />
                     <MenuItem mnemonicParsing="false" text="Delete" />
                 </items>
             </Menu>
@@ -30,7 +30,7 @@
     </MenuBar>
 </top>
 <bottom>
-    <Label id="statusLabel" maxWidth="1.7976931348623157E308" text="Ready" BorderPane.alignment="CENTER">
+    <Label fx:id="statusLabel" maxWidth="1.7976931348623157E308" text="Ready" BorderPane.alignment="CENTER">
         <BorderPane.margin>
             <Insets bottom="12.0" left="12.0" right="12.0" />
         </BorderPane.margin>
@@ -42,14 +42,14 @@
             <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
         </BorderPane.margin>
         <children>
-            <TextArea id="inputTextArea" promptText="Copy text with errors here..." wrapText="true">
+            <TextArea fx:id="inputTextArea" promptText="Copy text with errors here..." wrapText="true">
                 <VBox.vgrow>
                     <Priority fx:constant="ALWAYS" />
                 </VBox.vgrow>
             </TextArea>
             <HBox alignment="CENTER_RIGHT">
                 <children>
-                    <Button id="correctButton" defaultButton="true" mnemonicParsing="false" onAction="#onCorrectRequested" text="Correct errors" />
+                    <Button fx:id="correctButton" defaultButton="true" mnemonicParsing="false" onAction="#onCorrectRequested" text="Correct errors" />
                 </children>
             </HBox>
         </children>

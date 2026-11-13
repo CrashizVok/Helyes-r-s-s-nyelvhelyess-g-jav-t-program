@@ -10,32 +10,64 @@ import javafx.scene.control.TextArea;
 import java.util.concurrent.CompletionException;
 
 public class HelloController {
-    private final HttpClientService httpClientService = new HttpClientService(System.getenv("GROQ_API_KEY"));
+    private final HttpClientService httpClientService = new HttpClientService(System.getenv("API_KEY"));
 
 
+    @FXML
     private TextArea inputTextArea;
 
 
+    @FXML
     private Label statusLabel;
 
 
+    @FXML
     private Button correctButton;
 
 
+    @FXML
     private MenuItem correctErrorsMenuItem;
 
     @FXML
     private void initialize() {
+        System.out.println("API_KEY: " + (System.getenv("API_KEY") != null));
 
+        if (!httpClientService.hasApiKey()){
+            statusLabel.setText("No api key ejnye");
+            setActionControlsDisabled(true);
+        }
+        else {
+            statusLabel.setText("mehet");
+        }
     }
 
     @FXML
     protected void onCorrectRequested() {
+        String text = inputTextArea.getText();
+        if (text.isBlank()){
+            return;
+        }
+        setActionControlsDisabled(true);
+        statusLabel.setText("Egy pillanat");
+
+        httpClientService.correctTextAsync(text).thenAccept(corrected -> Platform.runLater(() ->{
+            inputTextArea.setText(corrected);
+            statusLabel.setText("------");
+            setActionControlsDisabled(false);
+        }))
+            .exceptionally(throwable -> {
+                Platform.runLater(() ->{
+                    statusLabel.setText(formatErrorMessage(throwable));
+                    setActionControlsDisabled(false);
+                });
+                return null;
+            });
 
     }
 
     private void setActionControlsDisabled(boolean disabled) {
-
+        correctButton.setDisable(disabled);
+        correctErrorsMenuItem.setDisable(disabled);
     }
 
     private String formatErrorMessage(Throwable throwable) {
